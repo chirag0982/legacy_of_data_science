@@ -1,0 +1,114 @@
+import pandas as pd
+
+
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+dataset = pd.read_csv("social_network_ads.csv")
+dataset
+
+
+dataset.shape
+
+
+df = dataset.isnull().sum()
+df
+
+
+dataset.describe()
+
+
+dataset.dtypes
+
+
+dataset.drop_duplicates()
+
+
+dataset.shape
+
+
+import seaborn as sns
+plt.figure(figsize=(10, 8))
+sns.scatterplot(x='Age',y='EstimatedSalary',hue='Purchased',data=dataset,s=100)
+plt.title("Purchase details",y=1.015, fontsize=20)
+plt.xlabel("Age",labelpad=13)
+plt.ylabel("EstimatedSalary", labelpad = 13)
+ax=plt.gca()
+
+
+from sklearn.model_selection import train_test_split
+x=dataset[['Age','EstimatedSalary']].values
+y=dataset['Purchased'].values
+X_train,X_test,y_train,y_test = train_test_split(x,y,test_size=0.25,random_state =0)
+
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+scaler.fit(X_train)
+x_train_scaled  =  scaler.transform(X_train)
+x_test_scaled = scaler.transform(X_test)
+
+
+from sklearn.linear_model import LogisticRegression
+logistic_regression = LogisticRegression()
+logistic_regression.fit(X_train,y_train)
+y_pred = logistic_regression.predict(X_test)
+
+
+logistic_regression.coef_
+
+
+logistic_regression.intercept_
+
+
+logistic_regression.predict([[20,30000]])
+
+
+logistic_regression.predict_proba([[20,30000]])
+
+
+logistic_regression.predict_proba(X_test)
+
+
+from sklearn.metrics import plot_roc_curve, confusion_matrix, f1_score,precision_score,recall_score,accuracy_score
+cm = metrics.confusion_matrix(y_test,y_pred)
+cm
+tn, fp, fn, tp = cm.ravel()
+(tn, fp, fn, tp)
+
+
+# Assigning columns names
+cm_df = pd.DataFrame(cm, 
+            columns = ['Predicted Negative', 'Predicted Positive'],
+            index = ['Actual Negative', 'Actual Positive'])
+# Showing the confusion matrix
+cm_df
+
+
+
+p=metrics.precision_score(y_test, y_pred)
+r=metrics.recall_score(y_test, y_pred)
+a=metrics.accuracy_score(y_test, y_pred)
+f1=metrics.f1_score(y_test, y_pred)
+print("precision_score:",p)
+print("recall_score:",r)
+print("accuracy_score:",a)
+print("f1_score:",f1)
+metrics.plot_roc_curve(logistic_regression,X_test,y_test)
+
+
+from sklearn.metrics import classification_report
+print(classification_report(y_test, y_pred))
+
+
+fig,ax=plt.subplots(figsize=(3,3))
+ax=sns.heatmap(cm,annot=True,cbar=False)
+plt.xlabel("Actual Label")
+plt.ylabel("Predicted Label")
+
+
+err=(fn+fp)/(tn+fp+fn+tp)
+err

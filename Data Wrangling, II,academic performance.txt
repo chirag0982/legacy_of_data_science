@@ -1,0 +1,336 @@
+import pandas as pd
+import numpy as np
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,90,np.nan],"English_marks":[70,80,90,np.nan,60],"Science_marks":[80,90,np.nan,60,70],"History_marks":[90,np.nan,60,70,80],"Geography_marks":[np.nan,60,70,80,90]}
+
+df1=pd.DataFrame(dict1)
+
+df1
+
+df1.isnull().sum()
+
+df1.info()
+
+bool_series = pd.notnull(df1)
+bool_series
+
+# filling missing value using fillna() 
+df1.fillna(0,inplace=True)
+df1
+
+df1=pd.DataFrame(dict1)
+df1
+
+# filling a missing value with
+# previous ones 
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,60],"Science_marks":[80,91,np.nan,60,70],"History_marks":[76,np.nan,60,70,80],"Geography_marks":[np.nan,60,70,80,90]}
+df1=pd.DataFrame(dict1)
+
+df1.fillna(method ='pad')
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# filling a missing value with
+# next ones
+df1.fillna(method ='bfill')
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# filling a null values using fillna()
+df1["Maths_marks"].fillna(45, inplace = True)
+df1["English_marks"].fillna(55, inplace = True)
+df1["Science_marks"].fillna(65, inplace = True)
+df1["History_marks"].fillna(75, inplace = True)
+df1["Geography_marks"].fillna(85, inplace = True)
+
+df1
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# filling a null values using fillna()
+df1["Maths_marks"].fillna(int(df1["Maths_marks"].mean()), inplace=True)
+
+df1
+
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# will replace  Nan value in dataframe with value 85 
+df1.replace(to_replace = np.nan, value = 85)
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# to interpolate the missing values
+df1.interpolate(method ='linear', limit_direction ='forward')
+#c=(a+b)/2
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,75],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# using dropna() function 
+df1.dropna()
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# using dropna() function   
+df1.dropna(how = 'all',inplace=True)
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# using dropna() function    
+df1.dropna(axis = 1)
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[60,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# making new data frame with dropped NA values
+df2 = df1.dropna(axis = 0, how ='any')
+
+df2
+
+dict1={"Roll_No":[1,2,3,4,5],"Name":["Amol","Dipak","Shreya","Krisha","Pooja"],"Maths_marks":[60,70,80,93,np.nan],"English_marks":[70,80,40,np.nan,50],"Science_marks":[80,91,np.nan,65,70],"History_marks":[76,np.nan,68,70,80],"Geography_marks":[np.nan,62,70,80,90]}
+df1=pd.DataFrame(dict1)
+df1
+
+# Importing
+import sklearn
+from sklearn.datasets import load_boston
+import pandas as pd
+import matplotlib.pyplot as plt
+ 
+# Load the dataset
+bos_hou = load_boston()
+ 
+# Create the dataframe
+column_name = bos_hou.feature_names
+df_boston = pd.DataFrame(bos_hou.data)
+df_boston.columns = column_name
+df_boston.head()
+
+# Box Plot
+import seaborn as sns
+sns.boxplot(df_boston['DIS'])
+
+# Position of the Outlier
+print(np.where(df_boston['DIS']>10))
+
+df_boston.info()
+
+# Scatter plot
+fig, ax = plt.subplots(figsize = (18,10))
+ax.scatter(df_boston['INDUS'], df_boston['TAX'])
+ 
+# x-axis label
+ax.set_xlabel('(Proportion non-retail business acres)/(town)')
+ 
+# y-axis label
+ax.set_ylabel('(Full-value property-tax rate)/( $10,000)')
+plt.show()
+
+# Position of the Outlier
+print(np.where((df_boston['INDUS']>20) & (df_boston['TAX']>600)))
+
+
+# Z score
+from scipy import stats
+import numpy as np
+ 
+z = np.abs(stats.zscore(df_boston['DIS']))
+print(z)
+
+threshold = 3
+ 
+# Position of the outlier
+print(np.where(z > 3))
+
+# IQR
+Q1 = np.percentile(df_boston['DIS'], 25,
+                   interpolation = 'midpoint')
+ 
+Q3 = np.percentile(df_boston['DIS'], 75,
+                   interpolation = 'midpoint')
+IQR = Q3 - Q1
+
+# Above Upper bound
+upper = df_boston['DIS'] >= (Q3+1.5*IQR)
+ 
+print("Upper bound:",upper)
+print(np.where(upper))
+ 
+# Below Lower bound
+lower = df_boston['DIS'] <= (Q1-1.5*IQR)
+print("Lower bound:", lower)
+print(np.where(lower))
+
+# Importing
+import sklearn
+from sklearn.datasets import load_boston
+import pandas as pd
+
+# Load the dataset
+bos_hou = load_boston()
+
+# Create the dataframe
+column_name = bos_hou.feature_names
+df_boston = pd.DataFrame(bos_hou.data)
+df_boston.columns = column_name
+df_boston.head()
+
+''' Detection '''
+# IQR
+Q1 = np.percentile(df_boston['DIS'], 25,
+				interpolation = 'midpoint')
+
+Q3 = np.percentile(df_boston['DIS'], 75,
+				interpolation = 'midpoint')
+IQR = Q3 - Q1
+
+print("Old Shape: ", df_boston.shape)
+
+# Upper bound
+upper = np.where(df_boston['DIS'] >= (Q3+1.5*IQR))
+# Lower bound
+lower = np.where(df_boston['DIS'] <= (Q1-1.5*IQR))
+
+''' Removing the Outliers '''
+df_boston.drop(upper[0], inplace = True)
+df_boston.drop(lower[0], inplace = True)
+
+print("New Shape: ", df_boston.shape)
+
+# importing pandas as pd
+import pandas as pd
+
+# Creating the DataFrame
+df = pd.DataFrame({"A":[12, 4, 5, None, 1],
+				"B":[7, 2, 54, 3, None],
+				"C":[20, 16, 11, 3, 8],
+				"D":[14, 3, None, 2, 6]})
+
+# Create the index
+index_ = ['Row_1', 'Row_2', 'Row_3', 'Row_4', 'Row_5']
+
+# Set the index
+df.index = index_
+
+# Print the DataFrame
+print(df)
+
+# pass a list of functions
+result = df.transform(func = ['sqrt', 'exp'])
+result
+# Print the result
+#print(result)
+
+import seaborn as sns
+import pandas as pd
+import numpy as np
+
+data = sns.load_dataset('iris')
+print('Original Dataset')
+data.head()
+
+# Min-Max Normalization
+df = data.drop('species', axis=1)
+df_norm = (df-df.min())/(df.max()-df.min())
+df_norm = pd.concat((df_norm, data.species), 1)
+
+print("Scaled Dataset Using Pandas")
+df_norm.head()
+
+# skewness along the index axis
+df_norm.skew(axis = 0, skipna = True)
+
+
+# find skewness in each row
+df.skew(axis = 1, skipna = True)
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+import statistics
+  
+
+  
+# Calculating mean and standard deviation
+mean = statistics.mean(df_norm["sepal_length"])
+sd = statistics.stdev(df_norm["sepal_length"])
+  
+plt.plot(df_norm["sepal_length"], norm.pdf(df_norm["sepal_length"], mean, sd))
+plt.show()
+print(mean)
+print(sd)
+
+
+# Calculating mean and standard deviation
+mean = statistics.mean(df_norm["petal_width"])
+sd = statistics.stdev(df_norm["petal_width"])
+  
+plt.plot(df_norm["petal_width"], norm.pdf(df_norm["petal_width"], mean, sd))
+plt.show()
+print(mean)
+print(sd)
+
+import seaborn as sns
+from sklearn.preprocessing import MinMaxScaler
+import pandas as pd
+
+data = sns.load_dataset('iris')
+print('Original Dataset')
+data.head()
+
+scaler = MinMaxScaler()
+
+df_scaled = scaler.fit_transform(df.to_numpy())
+df_scaled = pd.DataFrame(df_scaled, columns=[
+'sepal_length', 'sepal_width', 'petal_length', 'petal_width'])
+
+print("Scaled Dataset Using MinMaxScaler")
+df_scaled.head()
+
+
+# Calculating mean and standard deviation
+mean = statistics.mean(df_scaled["sepal_length"])
+sd = statistics.stdev(df_scaled["sepal_length"])
+  
+plt.plot(df_scaled["sepal_length"], norm.pdf(df_scaled["sepal_length"], mean, sd))
+plt.show()
+print(mean)
+print(sd)
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+import seaborn as sns
+
+data = sns.load_dataset('iris')
+print('Original Dataset')
+data.head()
+
+data.drop(["species"],inplace=True,axis=1)
+data
+
+std_scaler = StandardScaler()
+
+df_scaled = std_scaler.fit_transform(data.to_numpy())
+df_scaled = pd.DataFrame(df_scaled, columns=[
+'sepal_length','sepal_width','petal_length','petal_width'])
+
+print("Scaled Dataset Using StandardScaler")
+df_scaled.head()
+

@@ -1,0 +1,67 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns 
+
+
+data=pd.read_csv("data.csv")
+
+
+data
+
+
+data.describe()
+
+
+data["age"].min()
+
+
+data["age"].max()
+
+
+data["age"].std()
+
+
+data["age"].mean()
+
+
+data["age"].median()
+
+
+data["income"].nunique()
+
+
+data.groupby(["income","age"]).count()
+
+
+data.groupby(["income","age"]).min()
+
+
+data.groupby(["income","age"]).max()
+
+
+data.groupby(["income","age"]).mean()
+
+
+data.groupby(["income","age"]).median()
+
+
+data.groupby(["income","age"]).std()
+
+
+import seaborn as sns
+import pandas as pd
+import numpy as np
+
+data = sns.load_dataset('iris')
+print('Original Dataset')
+data.head()
+
+
+data.describe()
+
+
+np.percentile(data["sepal_length"],25)
+
+
+data["sepal_length"].std()
